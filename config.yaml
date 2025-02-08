@@ -1,0 +1,7 @@
+base_url: "https://www.facebook.com"
+browser: "chromium"
+headless: true
+timeout: 5000
+credentials:
+  username: "test_user"
+  password: "securepassword"
