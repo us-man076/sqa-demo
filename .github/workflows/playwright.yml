@@ -27,7 +27,7 @@ jobs:
         run: pytest tests/test_api.py --html=reports/api_test_report.html
 
       - name: Upload Test Reports
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: Test Reports
           path: reports/
