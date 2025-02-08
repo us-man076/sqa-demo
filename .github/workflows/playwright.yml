@@ -1,10 +1,10 @@
-name: Playwright SQA Tests
+name: Playwright UI & API Tests
 
-on: [push, pull_request]  # Run tests on every push and PR
+on: [push, pull_request]  
 
 jobs:
   test:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -16,8 +16,17 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install pytest playwright pyyaml
+          pip install pytest playwright pyyaml pytest-html
           playwright install
 
-      - name: Run Playwright Tests
-        run: pytest tests/
+      - name: Run UI Tests with HTML Report
+        run: pytest tests/test_login.py --html=reports/ui_test_report.html
+
+      - name: Run API Tests with HTML Report
+        run: pytest tests/test_api.py --html=reports/api_test_report.html
+
+      - name: Upload Test Reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: Test Reports
+          path: reports/

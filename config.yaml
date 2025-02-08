@@ -5,3 +5,9 @@ timeout: 5000
 credentials:
   username: "test_user"
   password: "securepassword"
+
+
+api:
+  login: "/login"
+  users: "/users"
+  create_user: "/users"
