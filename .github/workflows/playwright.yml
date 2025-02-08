@@ -1,0 +1,23 @@
+name: Playwright SQA Tests
+
+on: [push, pull_request]  # Run tests on every push and PR
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Install dependencies
+        run: |
+          pip install pytest playwright pyyaml
+          playwright install
+
+      - name: Run Playwright Tests
+        run: pytest tests/
